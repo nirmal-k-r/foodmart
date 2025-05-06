@@ -1,0 +1,27 @@
+<%- include('../partials/header.ejs') %>
+
+        <div class="container">
+            <div class="text-center">
+                <h1>Login</h1>
+              </div>
+            
+
+            <form action="/authentication/login" method="POST">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Email</span>
+                  <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" name="email">
+                </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Password</span>
+                  <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" name="password">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a class="btn btn-success" href="/authentication/register">Register</a>
+
+            </form>
+
+        </div>
+
+ <%- include('../partials/footer.ejs') %>

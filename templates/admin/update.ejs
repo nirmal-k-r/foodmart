@@ -1,0 +1,57 @@
+<%- include('../partials/header.ejs') %>
+
+        <div class="container">
+            <h1>Update form</h1>
+            <p>Update the product details</p>
+
+            <br><br>
+
+            <form action="/admin/update-product/<%-product.id %>" method="POST">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Name</span>
+                  <input type="text" class="form-control" placeholder="Product Name" aria-label="Product name" aria-describedby="basic-addon1" name="name" value="<%- product.name %>">
+                </div>
+                
+                <div class="input-group">
+                  <span class="input-group-text">Description</span>
+                  <textarea class="form-control" aria-label="With textarea" name="description"><%-product.description %></textarea>
+                </div>
+                <br>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text">MUR</span>
+                  <input type="text" class="form-control" aria-label="Amount (to the nearest rupee)" name="price" value="<%-product.price %>">
+                  <span class="input-group-text">.00</span>
+                </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Stock</span>
+                  <input type="text" class="form-control" aria-label="" name="stock" value="<%-product.stock %>">
+            
+                </div>
+
+                <select class="form-select" aria-label="Product category" name="category">
+                  <option value="Drinks" <% if (product.category=='Drinks'){%>selected <% } %>>Drinks</option>
+                  <option value="Food"<% if (product.category=='Food'){%>selected <% } %>>Food</option>
+                  <option value="Fruits"<% if (product.category=='Fruits'){%>selected <% } %>>Fruits</option>
+                </select>
+                <br>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Image Url</span>
+                  <input type="text" class="form-control" aria-label="Image Url" aria-describedby="basic-addon1" name="img_url" value="<%-product.imageUrl %>">
+                </div>
+                <br>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Update Product</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+                
+            
+              </form>
+        </div>
+
+        
+
+ <%- include('../partials/footer.ejs') %>

@@ -1,0 +1,62 @@
+<%- include('../partials/header.ejs') %>
+
+    <section>
+        <div class="container">
+            <div class="alert alert-info" role="alert">
+                    We wish you a happy shopping experience <%-user.fullName %>!
+            </div>
+            <br>
+            <h1>Cart page</h1>
+            <br><br><br>
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price (Rs)</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">ItemTotal (Rs)</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                
+                <% i=0;  %>
+                <% for (itemId in cart){  %>
+                  <tr>
+                    <th scope="row"><%- i %></th>
+                    <td><%- cart[itemId].name %></td>
+                    <td><%- cart[itemId].price %></td>
+                    <td><%- cart[itemId].qty %></td>
+                    <td><%- (cart[itemId].price*cart[itemId].qty) %></td>
+                    <td>
+                        <a href="/cart/delete/<%- itemId %>" class="btn btn-sm btn-danger">Remove</a>
+                    </td>
+                  </tr>
+                <% i++; } %>
+      
+                    <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b>Total</b></td>
+                        <td><b><%- cartTotal %></b></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><br>
+            <% if (cartTotal == 0) { %>
+                <div class="alert alert-warning" role="alert">
+                    Your cart is empty. Please add some items to your cart.
+                </div>
+            <% }else{ %>
+                <div class="text-center">
+                    <a href="/orders/placeOrder" class="btn btn-primary">Checkout</a>
+                    <a href="/" class="btn btn-secondary">Continue Shopping</a>
+                </div>
+            <% } %>
+    </section>
+
+ <%- include('../partials/footer.ejs') %>

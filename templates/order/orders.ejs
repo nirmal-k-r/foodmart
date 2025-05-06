@@ -1,0 +1,51 @@
+<%- include('../partials/header.ejs') %>
+
+    <section>
+        <div class="container">
+            <div class="alert alert-info" role="alert">
+                    Here are your orders <%-user.fullName %>!
+            </div>
+            <br>
+            <h1>Cart page</h1>
+            <br><br><br>
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">OrderTotal(Rs)</th>
+                    <th scope="col">Items</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                
+                <% i=0;  %>
+                <% for (orderId in orders){  %>
+                    <% 
+                        var date = new Date(orders[orderId].orderDate);
+                        var dd = String(date.getDate()).padStart(2, '0');
+                        var mm = date.toLocaleString('default', { month: 'long' });
+                        var yy = String(date.getFullYear()).slice(-2);
+                        var formattedDate = `${dd} ${mm} 20${yy}`;
+                   %>
+                   
+                  <tr>
+                    <th scope="row"><%- i %></th>
+                    <td><%- formattedDate %></td>
+                    <td><%- orders[orderId].totalAmount %></td>
+                    <td><%- JSON.stringify(orders[orderId].cart) %></td>
+                    <td><%- orders[orderId].status %></td>
+                    
+                  </tr>
+                <% i++; } %>
+      
+            
+                </tbody>
+            </table>
+            <br><br>
+           
+    </section>
+
+ <%- include('../partials/footer.ejs') %>

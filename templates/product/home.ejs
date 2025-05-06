@@ -1,0 +1,39 @@
+<%- include('../partials/header.ejs') %>
+
+        <section>
+                
+                <div class="container">
+                        <div class="alert alert-info" role="alert">
+                                Welcome to FoodMart <%-user.fullName %>! Have a great shopping.
+                        </div>
+                        <br>
+                        <h1>Products page</h1>
+                        <br>
+
+                        <div class="row">
+                                <% products.forEach(product => { %>
+                                        <div class="col-sm-4">
+                                                <div class="card" style="width: 18rem;">
+                                                        <img src="<%- product.imageUrl %>" class="card-img-top" style="padding: 30px;">
+                                                        <div class="card-body">
+                                                          <h5 class="card-title"><%- product.name %></h5>
+                                                          <p class="card-text"><%- product.decription %></p>
+                                                        </div>
+                                                        <ul class="list-group list-group-flush">
+                                                          <li class="list-group-item">Price: <%- product.price %></li>
+                                                          <li class="list-group-item">Stock: <%- product.stock %></li>
+                                                          <li class="list-group-item">Cat: <%- product.category %></li>
+                                                        </ul>
+                                                        <div class="card-body text-center">
+                                                                <a href="/cart/add/<%- product.id %>" class="btn btn-primary">Add to cart</a>
+                                                        </div>
+                                                      </div>
+                                        </div>
+
+                                <% }); %>
+                        </div>
+
+                </div>
+        </section>
+
+ <%- include('../partials/footer.ejs') %>

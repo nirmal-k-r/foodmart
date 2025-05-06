@@ -1,0 +1,113 @@
+<%- include('../partials/header.ejs') %>
+
+<div class="container">
+    <h3>Admin console</h3>
+    <div class="alert alert-info" role="alert">
+        Welcome to the admin console. Here you can manage products in the system.
+    </div>
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Create new product
+    </button>
+    <br><br>
+
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Category</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <% var id=1; %>
+            <% products.forEach(product => { %>
+            <tr>
+              <th scope="row"><a href="/admin/update-product/<%- product.id %>"><%- id %></a></th>
+              <td><%- product.name %></td>
+              <td><%- product.price %></td>
+              <td><%- product.stock %></td>
+              <td><%- product.category %></td>
+              <td><a class="btn btn-danger btn-sm" href="/admin/delete-product/<%- product.id %>">Delete</a></td>
+            </tr>
+
+            <% id++; }) %>
+           
+          </tbody>
+    </table>
+    
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Create new product</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/admin/create-product" method="POST">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Name</span>
+                  <input type="text" class="form-control" placeholder="Product Name" aria-label="Product name" aria-describedby="basic-addon1" name="name">
+                </div>
+                
+                <div class="input-group">
+                  <span class="input-group-text">Description</span>
+                  <textarea class="form-control" aria-label="With textarea" name="description"></textarea>
+                </div>
+                <br>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text">MUR</span>
+                  <input type="text" class="form-control" aria-label="Amount (to the nearest rupee)" name="price">
+                  <span class="input-group-text">.00</span>
+                </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Stock</span>
+                  <input type="text" class="form-control" aria-label="" name="stock">
+            
+                </div>
+
+                <select class="form-select" aria-label="Product category" name="category">
+                  <option value="Drinks">Drinks</option>
+                  <option value="Food">Food</option>
+                  <option value="Fruits">Fruits</option>
+                </select>
+                <br>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Image Url</span>
+                  <input type="text" class="form-control" aria-label="Image Url" aria-describedby="basic-addon1" name="imageUrl">
+                </div>
+                <br>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Create Product</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+            
+            </form>
+          
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+        
+<%- include('../partials/footer.ejs') %>

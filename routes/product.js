@@ -7,6 +7,8 @@ const axios = require('axios');
 //import product controller
 const productController = require('../controllers/product');
 
+// backendUrl='http://localhost:3000'; //backend url
+backendUrl='https://foodmart-xwsx.onrender.com';
 
 router.get('/', async function(req,res){
     if (req.session.user){ //check if user logged in
@@ -30,7 +32,7 @@ router.post('/searchResults', async function(req,res){
         //get query params
         const keywords = req.body.keywords;
         
-        products=await axios.get('http://localhost:3000/search?keywords='+keywords);
+        products=await axios.get(backendUrl+'/search?keywords='+keywords);
 
         //get data from response
         products=products.data.data;

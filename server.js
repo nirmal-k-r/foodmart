@@ -4,6 +4,7 @@ var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var session=require('express-session');
 
+
 //import routers
 productRouter=require('./routes/product');
 adminRouter=require('./routes/admin');
@@ -44,10 +45,10 @@ server.use('/authentication',authenticationRouter);
 server.use('/orders',orderRouter);
 
 //start server and listen to port
-PORT=3000;
+
+//get port from environment
+PORT=process.env.PORT || 10000;
 server.listen(PORT,function(){
     console.log('Server is running on port',PORT);
 });
 
-
-//http://localhost:3000/

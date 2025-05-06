@@ -48,7 +48,9 @@ server.use('/orders',orderRouter);
 
 //get port from environment
 PORT=process.env.PORT || 10000;
-server.listen(PORT,function(){
+host='0.0.0.0'; //listen to all ips 0.0.0.0
+
+server.listen(PORT,host,function(){
     console.log('Server is running on port',PORT);
 });
 
